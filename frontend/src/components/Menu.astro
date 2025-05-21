@@ -1,0 +1,24 @@
+---
+import MenuButton from './MenuButton.astro';
+import {getLangFromUrl, useTranslations} from '../i18n/utils';
+import '../styles/menu/menu.css';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="menu-container">
+    <img
+            src="../assets/logo.png"
+            alt="Logo"
+            class="menu-logo"
+            onclick="document.querySelector('.menu-container').classList.toggle('open')"
+    />
+
+    <div class="navbar">
+        <MenuButton class="menu-item" text={t('nav.home')}/>
+        <MenuButton class="menu-item" text={t('nav.about')}/>
+        <MenuButton class="menu-item" text={t('nav.portfolio')}/>
+        <MenuButton class="menu-item" text={t('nav.contact')}/>
+    </div>
+</div>
