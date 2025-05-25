@@ -1,6 +1,6 @@
 ---
 import '../styles/menu/menu-button.css';
-const { text } = Astro.props;
+const { text, path } = Astro.props;
 ---
 
-<a href="#" class="menu-button" role="button">{text}</a>
+<a href={path} class="menu-button" role="button">{text}</a>

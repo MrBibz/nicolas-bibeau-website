@@ -1,0 +1,76 @@
+.language-selector-container {
+    position: relative;
+    display: inline-block;
+}
+
+.language-selector {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    height: 48px;
+    line-height: 24px;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    font-family: 'Courier New', monospace;
+    z-index: 1;
+    width: 100%;
+
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+.language-selector-container::after {
+    background-color: #ffffff;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: 0;
+}
+
+.language-selector-container:hover::after {
+    transform: translate(0, 0);
+}
+
+.language-selector:focus {
+    outline: none;
+}
+
+.language-selector:active {
+    background-color: #000000;
+    outline: 0;
+}
+
+.language-selector:hover {
+    outline: 0;
+}
+
+@media (min-width: 768px) {
+    .language-selector {
+        padding: 0 40px;
+    }
+}

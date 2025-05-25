@@ -1,11 +1,18 @@
 ---
 import MenuButton from './MenuButton.astro';
+import LanguageSelector from "./LanguageSelector.astro";
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import logo from '../assets/logo.png';
 import '../styles/menu/menu.css';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const items = [
+    { key: 'home' },
+    { key: 'about' },
+    { key: 'portfolio' },
+    { key: 'contact' }
+];
 ---
 
 <div class="menu-container">
@@ -17,9 +24,13 @@ const t = useTranslations(lang);
     />
 
     <div class="navbar">
-        <MenuButton class="menu-item" text={t('nav.home')} />
-        <MenuButton class="menu-item" text={t('nav.about')} />
-        <MenuButton class="menu-item" text={t('nav.portfolio')} />
-        <MenuButton class="menu-item" text={t('nav.contact')} />
+        {items.map(({ key }) => (
+                <MenuButton
+                        class="menu-item"
+                        text={t(`menu.${key}`)}
+                        path={`/${lang}/${key}`}
+                />
+        ))}
+        <LanguageSelector class="menu-item"/>
     </div>
 </div>

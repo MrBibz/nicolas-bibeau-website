@@ -1,0 +1,9 @@
+{
+  "menu": {
+    "home": "Accueil",
+    "about": "À propos",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "language": "Langue"
+  }
+}

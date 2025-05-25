@@ -1,13 +1,21 @@
-import { ui, defaultLang } from './ui';
+import fr from './fr.json';
+import en from './en.json';
 
-export function getLangFromUrl(url: URL) {
+export const translations = { fr, en };
+
+export type Lang = keyof typeof translations;
+
+export function getLangFromUrl(url: URL): Lang {
     const [, lang] = url.pathname.split('/');
-    if (lang in ui) return lang as keyof typeof ui;
-    return defaultLang;
+    if (lang === 'fr' || lang === 'en') return lang;
+    return 'en';
 }
 
-export function useTranslations(lang: keyof typeof ui) {
-    return function t(key: keyof typeof ui[typeof defaultLang]) {
-        return ui[lang][key] || ui[defaultLang][key];
-    }
+export function useTranslations(lang: Lang) {
+    const t = translations[lang] as Record<string, any>;
+
+    return (key: string): string => {
+        const result = key.split('.').reduce((o, k) => o?.[k], t);
+        return typeof result === 'string' ? result : key;
+    };
 }

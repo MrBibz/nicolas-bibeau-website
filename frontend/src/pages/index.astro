@@ -1,17 +1,14 @@
 ---
-import '../styles/global.css';
-import Menu from "../components/Menu.astro";
----
+export const prerender = false;
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Nicolas Bibeau</title>
-	</head>
-	<body>
-		<Menu />
-	</body>
-</html>
+const request = Astro.request;
+if (!request) {
+    throw new Error('Astro.request is not available');
+}
+
+const acceptedLang = request.headers.get('accept-language') || '';
+const lower = acceptedLang.toLowerCase();
+const defaultLang = lower.includes('fr') ? 'fr' : 'en';
+
+Astro.redirect(`/${defaultLang}/`);
+---
